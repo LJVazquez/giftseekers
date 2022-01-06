@@ -5,12 +5,16 @@ import Layout from './components/pages/Layout';
 
 import { fetchLatestGifts } from './utilities/requests';
 import { userDataPlaceholder } from './utilities/placeholder';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import LoginPage from './components/pages/LoginPage';
+import RegisterPage from './components/pages/RegisterPage';
+import HomePage from './components/pages/HomePage';
 
 function App() {
 	const [userData, setUserData] = useState(userDataPlaceholder);
 	const [tokenData, setTokenData] = useState(null);
+
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		//fetchAndSetGifts(6)
@@ -37,8 +41,8 @@ function App() {
 	};
 
 	const removeLoggedUserData = () => {
-		setUserData(null);
-		setTokenData(null);
+		setUserData(userDataPlaceholder);
+		setTokenData(userDataPlaceholder);
 		window.localStorage.removeItem('giftSeekersUserData');
 		window.localStorage.removeItem('giftSeekersTokenData');
 	};
@@ -62,9 +66,27 @@ function App() {
 
 	return (
 		<div className="App">
-			<Layout userData={userData}>
+			<Layout userData={userData} removeLoggedUserData={removeLoggedUserData}>
 				<Routes>
-					<Route path="/login" element={<LoginPage />} />
+					<Route path="/" element={<HomePage />} />
+					<Route
+						path="/login"
+						element={
+							<LoginPage
+								setLoggedUserData={setLoggedUserData}
+								navigate={navigate}
+							/>
+						}
+					/>
+					<Route
+						path="/register"
+						element={
+							<RegisterPage
+								setLoggedUserData={setLoggedUserData}
+								navigate={navigate}
+							/>
+						}
+					/>
 				</Routes>
 			</Layout>
 		</div>

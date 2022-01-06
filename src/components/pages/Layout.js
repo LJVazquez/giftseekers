@@ -4,10 +4,10 @@ import Footer from '../elements/Footer';
 import Navbar from '../sections/Navbar';
 import LoginPage from './LoginPage';
 
-export default function Layout({ children, userData }) {
+export default function Layout({ children, userData, removeLoggedUserData }) {
 	return (
 		<div>
-			<Navbar userData={userData} />
+			<Navbar userData={userData} removeLoggedUserData={removeLoggedUserData} />
 			{children}
 			<Footer />
 		</div>

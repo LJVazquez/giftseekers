@@ -1,6 +1,6 @@
 import React from 'react';
-import kirby from '../../img/success-kirby.png';
-import LoginForm from '../sections/LoginForm';
+import kirby from '../../img/worried-kirby.png';
+import RegisterForm from '../sections/RegisterForm';
 
 export default function LoginPage({ setLoggedUserData, navigate }) {
 	return (
@@ -10,7 +10,7 @@ export default function LoginPage({ setLoggedUserData, navigate }) {
 					<img src={kirby} alt="login image" style={{ height: 400 }} />
 				</div>
 				<div className="col-md">
-					<LoginForm
+					<RegisterForm
 						setLoggedUserData={setLoggedUserData}
 						navigate={navigate}
 					/>

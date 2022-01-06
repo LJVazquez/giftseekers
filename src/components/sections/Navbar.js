@@ -2,20 +2,28 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../img/logo.png';
 
-export default function Navbar({ userData }) {
+export default function Navbar({ userData, removeLoggedUserData }) {
 	const userUrl = `users/${userData.id}`;
+	console.log(`userData`, userData);
 
 	const getLoginButton = () => {
-		if (userData) {
+		if (userData.id) {
 			return (
-				<div className="navbar-nav ms-lg-4">
-					<Link
-						to={userUrl}
-						className="btn btn-sm btn-outline btn-outline-secondary text-dark"
-					>
-						{userData.username}
-					</Link>
-				</div>
+				<>
+					<div className="navbar-nav ms-lg-4">
+						<Link to={userUrl} className="nav-item nav-link">
+							{userData.username}
+						</Link>
+					</div>
+					<div className="d-flex align-items-lg-center mt-3 mt-lg-0">
+						<a
+							onClick={removeLoggedUserData}
+							className="btn btn-sm btn-secondary w-full w-lg-auto"
+						>
+							Logout
+						</a>
+					</div>
+				</>
 			);
 		} else {
 			return (
@@ -34,6 +42,7 @@ export default function Navbar({ userData }) {
 				<Link to="/" className="navbar-brand">
 					<img src={logo} className="h-8" alt="logo" />
 				</Link>
+
 				<button
 					className="navbar-toggler"
 					type="button"

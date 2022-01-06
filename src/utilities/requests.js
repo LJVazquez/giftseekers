@@ -57,11 +57,6 @@ export const fetchUserData = async (userId) => {
 	return res.data;
 };
 
-export const createUser = async (userData) => {
-	const res = await axios.post(usersUrl, userData);
-	return res.data;
-};
-
 export const connectUserToGift = async (token, giftId) => {
 	const url = giftsUrl + `/${giftId}/seek`;
 
@@ -90,7 +85,12 @@ export const disconnectUserFromGift = async (token, giftId) => {
 	return res.data;
 };
 
-export const login = async (loginData) => {
+export const loginUser = async (loginData) => {
 	const res = await axios.post(loginUrl, loginData);
+	return res.data;
+};
+
+export const registerUser = async (userData) => {
+	const res = await axios.post(usersUrl, userData);
 	return res.data;
 };

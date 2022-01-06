@@ -5,3 +5,7 @@
 .bg-main {
 	background-color: var(--main-color);
 }
+
+.text-main {
+	color: var(--main-color);
+}
