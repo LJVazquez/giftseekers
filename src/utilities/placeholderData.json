@@ -1,0 +1,19 @@
+{
+	"gift": {
+		"id": 1000,
+		"active": true,
+		"name": "Placeholder Name",
+		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.",
+		"city": "City",
+		"location": "Location",
+		"lat": -34.64202542874424,
+		"lng": -58.56707657877701,
+		"difficulty": 5,
+		"startDate": "2021-05-12T00:00:00.000Z",
+		"expirationDate": "2022-03-02T00:00:00.000Z",
+		"authorId": 1000,
+		"imageUrl": "",
+		"author": { "id": 996, "username": "placeholderUser" },
+		"seekers": [{ "id": 999 }, { "id": 998 }, { "id": 997 }]
+	}
+}
