@@ -1,0 +1,13 @@
+@import '@webpixels/css';
+
+:root {
+	--main-color: #ffd8d2;
+}
+
+.bg-main {
+	background-color: var(--main-color);
+}
+
+.text-main {
+	color: var(--main-color);
+}

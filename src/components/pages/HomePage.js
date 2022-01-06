@@ -1,5 +1,11 @@
 import React from 'react';
+import logo from '../../img/logo.png';
 
 export default function HomePage() {
-	return <div>home</div>;
+	return (
+		<main className="container">
+			<img src={logo} alt="logo" />
+			<button className="test">asdasd</button>
+		</main>
+	);
 }
