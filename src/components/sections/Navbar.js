@@ -28,10 +28,7 @@ export default function Navbar({ userData, removeLoggedUserData }) {
 		} else {
 			return (
 				<div className="d-flex align-items-lg-center mt-3 mt-lg-0">
-					<Link
-						to="/login"
-						className="btn btn-sm btn-tertiary w-full w-lg-auto"
-					>
+					<Link to="/login" className="btn btn-sm bg-main w-full w-lg-auto">
 						Login
 					</Link>
 				</div>
