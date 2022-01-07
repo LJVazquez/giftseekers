@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import Layout from './components/pages/Layout';
 
-import { fetchLatestGifts } from './utilities/requests';
 import { userDataPlaceholder } from './utilities/placeholder';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import LoginPage from './components/pages/LoginPage';
@@ -17,14 +16,8 @@ function App() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		//fetchAndSetGifts(6)
 		fetchDataFromLocalstorage();
 	}, []);
-
-	// const fetchAndSetGifts: (amount: number)=> void = async (amount:number) => {
-	//   const latestGifts = await fetchLatestGifts(amount);
-	//   console.log(`latestGifts`, latestGifts)
-	// }
 
 	const fetchDataFromLocalstorage = () => {
 		const localStorageUserData = window.localStorage.getItem(

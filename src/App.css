@@ -9,3 +9,16 @@
 .text-main {
 	color: var(--main-color);
 }
+
+.lined-title {
+	width: 100%;
+	text-align: center;
+	border-bottom: 1px solid #a1a1a193;
+	line-height: 0.1em;
+	margin: 10px 0 50px;
+}
+
+.lined-title span {
+	background: #fff;
+	padding: 0 10px;
+}
