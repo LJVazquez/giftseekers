@@ -23,7 +23,7 @@ export default function RegisterForm({ setLoggedUserData, navigate }) {
 		try {
 			const newUserData = await registerUser(registerData);
 			setLoggedUserData(newUserData);
-			navigate('/');
+			navigate(-1);
 		} catch (e) {
 			setErrorMessage('Error al registrar. Intente Luego.');
 		}
@@ -70,7 +70,7 @@ export default function RegisterForm({ setLoggedUserData, navigate }) {
 				</button>
 				<hr />
 				<p className="d-inline mx-2">Ya posee cuenta?</p>
-				<Link to="/register" className="text-main">
+				<Link to="/login" className="text-main">
 					Ir al login
 				</Link>
 			</div>

@@ -1,57 +1,45 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const imgStyle = { height: 200, objectFit: 'cover' };
+const imgStyle = { height: 280, objectFit: 'cover' };
 
 export default function MainPageGalleryCard({ gift }) {
 	const startDate = new Date(gift.startDate);
 	const dateLabel = startDate.toLocaleDateString();
-	const description =
-		gift.description.length > 35
-			? gift.description.slice(0, 35) + '...'
-			: gift.description;
 
 	const giftUrl = `/gifts/${gift.id}`;
+	const dotClass = `${
+		gift.active ? 'dot-active' : 'dot-inactive'
+	} rounded-circle`;
+
+	const star = '★';
+	let difficulty = '';
+	for (let i = 0; i < gift.difficulty; i++) {
+		difficulty = difficulty + star;
+	}
 
 	return (
-		<div className="col-lg-4 col-md-6 col-12 mb-5">
+		<div className="col-lg-4 col-md-6 col-12 pb-5">
 			<Link to={giftUrl}>
-				<div class="card">
-					<div class="p-2">
-						<img
-							alt={gift.name}
-							src={gift.imageUrl}
-							class="card-img"
-							style={imgStyle}
-						/>
+				<div className="card round rounded-6">
+					<div className="d-flex justify-content-end position-absolute top-4 end-4">
+						<div className={dotClass} style={{ width: 20, height: 20 }}></div>
 					</div>
-					<div class="card-body">
-						<h3 class="h4">{gift.name}</h3>
+					<img
+						src={gift.imageUrl}
+						alt={gift.name}
+						style={imgStyle}
+						className="p-3 pb-0 rounded rounded-6"
+					/>
+					<div className="card-body pb-3">
+						<div className="d-flex justify-content-between">
+							<h5 className="text-tertiary">{gift.name}</h5>
+							<p className="small text-muted">{dateLabel}</p>
+						</div>
 
-						<span class="d-block text-muted text-sm font-semibold">
-							{dateLabel}
-						</span>
-						<p class="mt-4 mb-6">{description}</p>
-						<div class="d-flex align-items-center">
-							<div class="">
-								<p
-									href="#"
-									class="text-heading text-primary-hover text-sm font-semibold"
-								>
-									{gift.seekers.length} seekers
-								</p>
-							</div>
-							<div class="ms-auto text-end">
-								{gift.active ? (
-									<span class="badge badge-lg bg-success text-heading">
-										Activo
-									</span>
-								) : (
-									<span class="badge badge-lg bg-secondary text-heading">
-										Inactivo
-									</span>
-								)}
-							</div>
+						<div className="d-flex justify-content-between mb-3">
+							<div className="text-warning">{difficulty}</div>
+							<p className="text-muted">{gift.location}</p>
 						</div>
 					</div>
 				</div>

@@ -23,7 +23,7 @@ export default function LoginForm({ setLoggedUserData, navigate }) {
 		try {
 			const loggedUserData = await loginUser(loginData);
 			setLoggedUserData(loggedUserData);
-			navigate('/');
+			navigate(-1);
 		} catch (e) {
 			setErrorMessage('Usuario y/o contraseña incorrecto/s');
 		}

@@ -8,6 +8,9 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import LoginPage from './components/pages/LoginPage';
 import RegisterPage from './components/pages/RegisterPage';
 import HomePage from './components/pages/HomePage';
+import GiftDetailPage from './components/pages/GiftDetailPage';
+import TestPage from './components/pages/TestPage';
+import CreateGiftPage from './components/pages/CreateGiftPage';
 
 function App() {
 	const [userData, setUserData] = useState(userDataPlaceholder);
@@ -63,6 +66,18 @@ function App() {
 				<Routes>
 					<Route path="/" element={<HomePage />} />
 					<Route
+						path="/gifts/create"
+						element={
+							<CreateGiftPage navigate={navigate} tokenData={tokenData} />
+						}
+					/>
+					<Route
+						path="/gifts/:id"
+						element={
+							<GiftDetailPage userData={userData} tokenData={tokenData} />
+						}
+					/>
+					<Route
 						path="/login"
 						element={
 							<LoginPage
@@ -80,6 +95,7 @@ function App() {
 							/>
 						}
 					/>
+					<Route path="/test" element={<TestPage />} />
 				</Routes>
 			</Layout>
 		</div>

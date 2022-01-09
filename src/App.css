@@ -22,3 +22,27 @@
 	background: #fff;
 	padding: 0 10px;
 }
+
+.dot-active {
+	background-color: aquamarine;
+	box-shadow: 0 0 5px aquamarine;
+}
+.dot-inactive {
+	background-color: lightcoral;
+	box-shadow: 0 0 5px lightcoral;
+}
+
+.input-star {
+	font-size: 2.2em;
+	color: gray;
+	transition: all 200ms;
+}
+
+.input-star:hover {
+	color: yellow;
+}
+
+.leaflet-container {
+	width: 100%;
+	height: 400px;
+}

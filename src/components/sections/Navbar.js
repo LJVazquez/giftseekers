@@ -4,7 +4,6 @@ import logo from '../../img/logo.png';
 
 export default function Navbar({ userData, removeLoggedUserData }) {
 	const userUrl = `users/${userData.id}`;
-	console.log(`userData`, userData);
 
 	const getLoginButton = () => {
 		if (userData.id) {
