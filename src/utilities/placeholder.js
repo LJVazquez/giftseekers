@@ -1,8 +1,3 @@
-export const userDataPlaceholder = {
-	id: 0,
-	username: 'loading',
-};
-
 export const giftPlaceholder = {
 	id: 0,
 	active: true,
@@ -17,8 +12,15 @@ export const giftPlaceholder = {
 	startDate: '2021-05-12T00:00:00.000Z',
 	expirationDate: '2022-03-02T00:00:00.000Z',
 	authorId: 0,
-	author: userDataPlaceholder,
+	author: { id: 0, username: 'loading', gifts: [], seeking: [] },
 	imageUrl:
 		'https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg',
-	seekers: [userDataPlaceholder, userDataPlaceholder, userDataPlaceholder],
+	seekers: [{ id: 0, username: 'loading', gifts: [], seeking: [] }],
+};
+
+export const userDataPlaceholder = {
+	id: 0,
+	username: 'loading',
+	gifts: [giftPlaceholder, giftPlaceholder],
+	seeking: [giftPlaceholder, giftPlaceholder],
 };

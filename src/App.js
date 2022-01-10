@@ -8,10 +8,11 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import LoginPage from './components/pages/LoginPage';
 import RegisterPage from './components/pages/RegisterPage';
 import HomePage from './components/pages/HomePage';
-import GiftDetailPage from './components/pages/GiftDetailPage';
+import ShowGiftPage from './components/pages/ShowGiftPage';
 import TestPage from './components/pages/TestPage';
 import CreateGiftPage from './components/pages/CreateGiftPage';
 import EditGiftPage from './components/pages/EditGiftPage';
+import ShowUserPage from './components/pages/ShowUserPage';
 
 function App() {
 	const [userData, setUserData] = useState(userDataPlaceholder);
@@ -74,14 +75,17 @@ function App() {
 					/>
 					<Route
 						path="/gifts/:id"
-						element={
-							<GiftDetailPage userData={userData} tokenData={tokenData} />
-						}
+						element={<ShowGiftPage userData={userData} tokenData={tokenData} />}
 					/>
 					<Route
 						path="/gifts/:id/edit"
 						element={<EditGiftPage navigate={navigate} tokenData={tokenData} />}
 					/>
+					<Route
+						path="/users/:id"
+						element={<ShowUserPage navigate={navigate} tokenData={tokenData} />}
+					/>
+
 					<Route
 						path="/login"
 						element={

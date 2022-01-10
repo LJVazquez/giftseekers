@@ -9,7 +9,7 @@ import GiftInfo from '../sections/GiftInfo';
 import { giftPlaceholder } from '../../utilities/placeholder';
 import LocationMap from '../sections/LocationMap';
 
-export default function GiftDetailPage({ userData, tokenData }) {
+export default function ShowGiftPage({ userData, tokenData }) {
 	const [gift, setGift] = useState(giftPlaceholder);
 	const giftId = useParams().id;
 	const giftCoords = [gift.lat, gift.lng];
