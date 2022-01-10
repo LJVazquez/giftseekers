@@ -11,6 +11,7 @@ import HomePage from './components/pages/HomePage';
 import GiftDetailPage from './components/pages/GiftDetailPage';
 import TestPage from './components/pages/TestPage';
 import CreateGiftPage from './components/pages/CreateGiftPage';
+import EditGiftPage from './components/pages/EditGiftPage';
 
 function App() {
 	const [userData, setUserData] = useState(userDataPlaceholder);
@@ -76,6 +77,10 @@ function App() {
 						element={
 							<GiftDetailPage userData={userData} tokenData={tokenData} />
 						}
+					/>
+					<Route
+						path="/gifts/:id/edit"
+						element={<EditGiftPage navigate={navigate} tokenData={tokenData} />}
 					/>
 					<Route
 						path="/login"
