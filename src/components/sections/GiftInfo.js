@@ -12,10 +12,10 @@ export default function GiftInfo({ userData, gift, seekGift, unseekGift }) {
 	if (gift.city)
 		city = gift.city[0] + gift.city.slice(1, gift.city.length).toLowerCase();
 
-	const star = '★';
+	const symbol = '❖';
 	let difficulty = '';
 	for (let i = 0; i < gift.difficulty; i++) {
-		difficulty = difficulty + star;
+		difficulty = difficulty + symbol;
 	}
 
 	const authorUrl = `/users/${gift.author.id}`;
@@ -35,9 +35,12 @@ export default function GiftInfo({ userData, gift, seekGift, unseekGift }) {
 
 					<div className="d-flex justify-content-between align-items-center">
 						<h2 className="text-tertiary">{gift.name}</h2>
-						<p className="text-warning pe-md-5" style={{ fontSize: '1.5em' }}>
-							{difficulty}
-						</p>
+						<div className="d-flex align-items-center pe-md-5">
+							<span>Dificultad</span>
+							<span className="ms-2 text-danger" style={{ fontSize: '1.5em' }}>
+								{difficulty}
+							</span>
+						</div>
 					</div>
 
 					<div className="d-flex justify-content-between align-items-center">

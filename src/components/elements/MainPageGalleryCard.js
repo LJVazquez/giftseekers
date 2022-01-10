@@ -12,10 +12,10 @@ export default function MainPageGalleryCard({ gift }) {
 		gift.active ? 'dot-active' : 'dot-inactive'
 	} rounded-circle`;
 
-	const star = '★';
+	const symbol = '❖';
 	let difficulty = '';
 	for (let i = 0; i < gift.difficulty; i++) {
-		difficulty = difficulty + star;
+		difficulty = difficulty + symbol;
 	}
 
 	return (
@@ -38,7 +38,9 @@ export default function MainPageGalleryCard({ gift }) {
 						</div>
 
 						<div className="d-flex justify-content-between mb-3">
-							<div className="text-warning">{difficulty}</div>
+							<div className="text-warning">
+								<abbr title="Dificultad">{difficulty}</abbr>
+							</div>
 							<p className="text-muted">{gift.location}</p>
 						</div>
 					</div>

@@ -11,11 +11,11 @@ export default function StarsInput({ label, value, setter, amount }) {
 			<div className="d-flex py-0">
 				{starsAmount.map((radioValue) => {
 					const colored = value >= radioValue;
-					const style = { color: colored ? 'yellow' : '' };
+					const style = { color: colored ? 'salmon' : '' };
 					return (
 						<div className="radio" key={radioValue}>
 							<label htmlFor={radioValue} className="input-star" style={style}>
-								★
+								❖
 							</label>
 							<input
 								className="d-none"

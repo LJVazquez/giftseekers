@@ -10,7 +10,7 @@ export const locationMarker = L.icon({
 });
 
 export const personMarker = L.icon({
-	iconSize: [20, 30],
+	iconSize: [15, 25],
 	iconAnchor: [10, 41],
 	popupAnchor: [2, -40],
 	iconUrl: personmarker,

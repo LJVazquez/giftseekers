@@ -65,9 +65,6 @@ export default function Navbar({ userData, removeLoggedUserData }) {
 						<Link to="/" className="nav-item nav-link">
 							Buscar
 						</Link>
-						<Link to="/" className="nav-item nav-link">
-							Placehold
-						</Link>
 					</div>
 					{getLoginButton()}
 				</div>
