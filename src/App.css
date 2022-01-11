@@ -1,13 +1,9 @@
-:root {
-	--main-color: #ffd8d2;
-}
-
 .bg-main {
-	background-color: var(--main-color);
+	background-color: #ffd8d2;
 }
 
 .text-main {
-	color: var(--main-color);
+	color: #ffd8d2;
 }
 
 .lined-title {
@@ -17,7 +13,6 @@
 	line-height: 0.1em;
 	margin: 10px 0 50px;
 }
-
 .lined-title span {
 	background: #fff;
 	padding: 0 10px;
@@ -27,6 +22,7 @@
 	background-color: aquamarine;
 	box-shadow: 0 0 5px aquamarine;
 }
+
 .dot-inactive {
 	background-color: lightcoral;
 	box-shadow: 0 0 5px lightcoral;
@@ -37,7 +33,6 @@
 	color: gray;
 	transition: all 200ms;
 }
-
 .input-star:hover {
 	color: salmon;
 }
@@ -46,3 +41,5 @@
 	width: 100%;
 	height: 400px;
 }
+
+/*# sourceMappingURL=App.css.map */

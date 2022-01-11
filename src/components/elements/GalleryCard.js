@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const imgStyle = { height: 280, objectFit: 'cover' };
 
-export default function MainPageGalleryCard({ gift }) {
+export default function GalleryCard({ gift }) {
 	const startDate = new Date(gift.startDate);
 	const dateLabel = startDate.toLocaleDateString();
 

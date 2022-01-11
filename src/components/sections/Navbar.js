@@ -62,8 +62,8 @@ export default function Navbar({ userData, removeLoggedUserData }) {
 						<Link to="/gifts/create" className="nav-item nav-link">
 							Regalar
 						</Link>
-						<Link to="/" className="nav-item nav-link">
-							Buscar
+						<Link to="/search" className="nav-item nav-link">
+							Ver regalos
 						</Link>
 					</div>
 					{getLoginButton()}

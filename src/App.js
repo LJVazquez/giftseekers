@@ -13,6 +13,7 @@ import TestPage from './components/pages/TestPage';
 import CreateGiftPage from './components/pages/CreateGiftPage';
 import EditGiftPage from './components/pages/EditGiftPage';
 import ShowUserPage from './components/pages/ShowUserPage';
+import SearchPage from './components/pages/SearchPage';
 
 function App() {
 	const [userData, setUserData] = useState(userDataPlaceholder);
@@ -85,6 +86,7 @@ function App() {
 						path="/users/:id"
 						element={<ShowUserPage navigate={navigate} tokenData={tokenData} />}
 					/>
+					<Route path="/search" element={<SearchPage />} />
 
 					<Route
 						path="/login"
