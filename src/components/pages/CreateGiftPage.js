@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CreateGiftForm from '../sections/CreateGiftForm';
 
 export default function CreateGiftPage({ navigate, tokenData }) {

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { createGift } from '../../utilities/requests';
 import citiesList from '../../utilities/citiesList.json';
-import { Link } from 'react-router-dom';
 import BasicInput from '../elements/BasicInput';
 import TextArea from '../elements/TextArea';
 import Select from '../elements/Select';

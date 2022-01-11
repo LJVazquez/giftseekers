@@ -6,9 +6,9 @@ export default function UserCard({ user }) {
 		<div className="card border-none">
 			<div className="card-body">
 				<div className="d-flex justify-content-center">
-					<a href="#" className="avatar avatar-xl rounded-circle">
+					<p className="avatar avatar-xl rounded-circle">
 						<img alt="user profile pic" src={pic} />
-					</a>
+					</p>
 				</div>
 				<div className="text-center my-6">
 					<p className="d-block h5 mb-0">{user.username}</p>

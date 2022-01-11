@@ -1,8 +1,6 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
 import Footer from '../elements/Footer';
 import Navbar from '../sections/Navbar';
-import LoginPage from './LoginPage';
 
 const style = { height: '100vh' };
 

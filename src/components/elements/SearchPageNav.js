@@ -8,7 +8,6 @@ export default function SearchPageNav({
 	const [latest, Setlatest] = useState(false);
 	const [hottest, setHottest] = useState(true);
 	const [all, setAll] = useState(false);
-	const [titleLabel, setTitleLabel] = useState('');
 
 	const setGiftsToLatest = () => {
 		fetchAndSetLatestGifts();

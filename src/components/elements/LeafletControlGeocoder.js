@@ -32,7 +32,7 @@ export default function LeafletControlGeocoder({ lat, lng, setLat, setLng }) {
 	useEffect(() => {
 		if (lat && lng) setMarker([lat, lng]);
 
-		const geocoder = L.Control.Geocoder.nominatim();
+		let geocoder = L.Control.Geocoder.nominatim();
 		if (typeof URLSearchParams !== 'undefined' && window.location.search) {
 			// parse /?geocoder=nominatim from URL
 			const params = new URLSearchParams(window.location.search);

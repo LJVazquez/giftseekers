@@ -25,6 +25,7 @@ export default function GiftInfo({ userData, gift, seekGift, unseekGift }) {
 			<div className="row">
 				<div className="col-md-7">
 					<img
+						alt="gift"
 						src={gift.imageUrl}
 						style={imgStyle}
 						className="rounded rounded-6 "

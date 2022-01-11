@@ -7,7 +7,7 @@ export default function LoginPage({ setLoggedUserData, navigate }) {
 		<div className="container mt-5" id="login-form">
 			<div className="row align-items-center justify-content-center">
 				<div className="col-md text-center">
-					<img src={kirby} alt="login image" style={{ height: 400 }} />
+					<img src={kirby} alt="login" style={{ height: 400 }} />
 				</div>
 				<div className="col-md">
 					<RegisterForm

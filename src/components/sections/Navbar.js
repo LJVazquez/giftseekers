@@ -15,12 +15,12 @@ export default function Navbar({ userData, removeLoggedUserData }) {
 						</Link>
 					</div>
 					<div className="d-flex align-items-lg-center mt-3 mt-lg-0">
-						<a
+						<p
 							onClick={removeLoggedUserData}
 							className="btn btn-sm btn-secondary w-full w-lg-auto"
 						>
 							Logout
-						</a>
+						</p>
 					</div>
 				</>
 			);
