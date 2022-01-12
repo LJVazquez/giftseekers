@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import logo from '../../img/logo.png';
 import GiftGallery from '../sections/GiftGallery';
 import { fetchLatestGifts } from '../../utilities/requests';
+import Skeleton from 'react-loading-skeleton';
 
 const imgStyle = { height: 200, objectFit: 'contain' };
 

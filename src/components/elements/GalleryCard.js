@@ -1,4 +1,5 @@
 import React from 'react';
+import Skeleton from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
 
 const imgStyle = { height: 280, objectFit: 'cover' };
