@@ -10,17 +10,17 @@ export default function ShowUserPage() {
 	const id = useParams().id;
 
 	useEffect(() => {
-		fetchAndSetData();
-	}, []);
+		const fetchAndSetData = async () => {
+			try {
+				const user = await fetchUserData(id);
+				setUser(user);
+			} catch (e) {
+				console.log(`e.message`, e.message);
+			}
+		};
 
-	const fetchAndSetData = async () => {
-		try {
-			const user = await fetchUserData(id);
-			setUser(user);
-		} catch (e) {
-			console.log(`e.message`, e.message);
-		}
-	};
+		fetchAndSetData();
+	}, [id]);
 
 	return (
 		<div className="container">
