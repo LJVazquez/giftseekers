@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchUserData } from '../../utilities/requests';
-import GiftsTable from '../sections/GiftsTable';
 import UserCard from '../sections/UserCard';
+import UserGiftsData from '../sections/UserGiftsData';
+import SkeletonUserGiftsData from '../skeletons/SkeletonUserGiftsData';
+import SkeletonUserCard from '../skeletons/SkeletonUserCard';
 
 export default function ShowUserPage() {
 	const [user, setUser] = useState();
@@ -19,30 +21,27 @@ export default function ShowUserPage() {
 			}
 		};
 
-		fetchAndSetData();
+		setTimeout(() => fetchAndSetData(), 500);
 	}, [id]);
 
-	return (
+	return user ? (
 		<div className="container">
-			{user && (
-				<>
-					<div className="row justify-content-center my-5">
-						<div className="col-6">
-							<UserCard user={user} />
-						</div>
-					</div>
-					<div className="row text-center">
-						<div className="col-lg-6 mb-5">
-							<h2 className="lead text-tertiary mb-2">Regalando</h2>
-							<GiftsTable gifts={user.gifts} />
-						</div>
-						<div className="col-lg-6">
-							<h2 className="lead text-tertiary mb-2">Buscando</h2>
-							<GiftsTable gifts={user.seeking} />
-						</div>
-					</div>
-				</>
-			)}
+			<div className="row justify-content-center my-5">
+				<div className="col-6">
+					<UserCard user={user} />
+				</div>
+			</div>
+
+			<UserGiftsData user={user} />
+		</div>
+	) : (
+		<div className="container">
+			<div className="row justify-content-center my-5">
+				<div className="col-6">
+					<SkeletonUserCard />
+				</div>
+			</div>
+			<SkeletonUserGiftsData />
 		</div>
 	);
 }

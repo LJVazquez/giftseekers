@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import logo from '../../img/logo.png';
-import { giftPlaceholder } from '../../utilities/placeholder';
 import {
 	fetchAllGifts,
 	fetchHottestGifts,
@@ -8,23 +7,27 @@ import {
 } from '../../utilities/requests';
 import SearchPageNav from '../elements/SearchPageNav';
 import GiftGallery from '../sections/GiftGallery';
+import SkeletonGiftGallery from '../skeletons/SkeletonGiftGallery';
 
 const imgStyle = { height: 200, objectFit: 'contain' };
 
 export default function SearchPage() {
-	const [gifts, setGifts] = useState([giftPlaceholder]);
+	const [gifts, setGifts] = useState(null);
 	const [paginatedGifts, setPaginatedGifts] = useState(null);
 	const [currentPage, setCurrentPage] = useState(0);
-	const [paginationEnabled, setPaginationEnabled] = useState(false);
 
 	const offset = 6;
 
 	useEffect(() => {
-		fetchAndSetHottestGifts();
+		setTimeout(() => fetchAndSetHottestGifts(), 500);
 	}, []);
 
 	useEffect(() => {
-		setPaginatedGifts(gifts.slice(currentPage, currentPage + offset));
+		const fetch = async () => {
+			const gifts = await fetchAllGifts();
+			setPaginatedGifts(gifts.slice(currentPage, currentPage + offset));
+		};
+		fetch();
 	}, [currentPage]);
 
 	const fetchAndSetAllGifts = async () => {
@@ -32,7 +35,6 @@ export default function SearchPage() {
 			const gifts = await fetchAllGifts();
 			setGifts(gifts);
 			setPaginatedGifts(gifts.slice(currentPage, currentPage + offset));
-			setPaginationEnabled(true);
 		} catch (e) {
 			console.log(`e.message`, e.message);
 		}
@@ -43,7 +45,6 @@ export default function SearchPage() {
 			const gifts = await fetchHottestGifts(6);
 			setGifts(gifts);
 			setPaginatedGifts(gifts);
-			setPaginationEnabled(false);
 		} catch (e) {
 			console.log(`e.message`, e.message);
 		}
@@ -54,7 +55,6 @@ export default function SearchPage() {
 			const gifts = await fetchLatestGifts(6);
 			setGifts(gifts);
 			setPaginatedGifts(gifts);
-			setPaginationEnabled(false);
 		} catch (e) {
 			console.log(`e.message`, e.message);
 		}
@@ -83,9 +83,13 @@ export default function SearchPage() {
 				fetchAndSetLatestGifts={fetchAndSetLatestGifts}
 			/>
 
-			{paginatedGifts && <GiftGallery gifts={paginatedGifts} />}
+			{gifts && paginatedGifts ? (
+				<GiftGallery gifts={paginatedGifts} />
+			) : (
+				<SkeletonGiftGallery />
+			)}
 
-			{paginationEnabled && (
+			{gifts && (
 				<div className="d-flex justify-content-center">
 					{currentPage > 0 && (
 						<button className="btn btn-small text-tertiary" onClick={prevPage}>

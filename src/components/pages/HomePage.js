@@ -2,20 +2,25 @@ import React, { useEffect, useState } from 'react';
 import logo from '../../img/logo.png';
 import GiftGallery from '../sections/GiftGallery';
 import { fetchLatestGifts } from '../../utilities/requests';
+import SkeletonGiftGallery from '../skeletons/SkeletonGiftGallery';
 
 const imgStyle = { height: 200, objectFit: 'contain' };
 
 export default function HomePage() {
-	const [gifts, setGifts] = useState([]);
+	const [gifts, setGifts] = useState(null);
 
 	useEffect(() => {
-		fetchAndSetGifts(6);
-	}, []);
+		const fetchAndSetData = async (amount) => {
+			try {
+				const latestGifts = await fetchLatestGifts(amount);
+				setGifts(latestGifts);
+			} catch (e) {
+				console.log(`e.message`, e.message);
+			}
+		};
 
-	const fetchAndSetGifts = async (amount) => {
-		const latestGifts = await fetchLatestGifts(amount);
-		setGifts(latestGifts);
-	};
+		setTimeout(() => fetchAndSetData(6), 500);
+	}, []);
 
 	return (
 		<main className="container py-10">
@@ -25,7 +30,7 @@ export default function HomePage() {
 					<span> Ultimos regalos</span>
 				</h1>
 			</div>
-			<GiftGallery gifts={gifts} />
+			{gifts ? <GiftGallery gifts={gifts} /> : <SkeletonGiftGallery />}
 		</main>
 	);
 }

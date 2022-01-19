@@ -6,23 +6,22 @@ import {
 	disconnectUserFromGift,
 } from '../../utilities/requests';
 import GiftInfo from '../sections/GiftInfo';
-import { giftPlaceholder } from '../../utilities/placeholder';
 import LocationMap from '../sections/LocationMap';
+import SkeletonGiftInfo from '../skeletons/SkeletonGiftInfo';
 
 export default function ShowGiftPage({ userData, tokenData }) {
-	const [gift, setGift] = useState(giftPlaceholder);
+	const [gift, setGift] = useState(null);
 	const giftId = useParams().id;
-	const giftCoords = [gift.lat, gift.lng];
 	const giftArea = 0.01; //kms
 
 	useEffect(() => {
-		fetchAndSetData();
-	}, []);
+		const fetchAndSetData = async () => {
+			const gift = await fetchGiftData(giftId);
+			setGift(gift);
+		};
 
-	const fetchAndSetData = async () => {
-		const gift = await fetchGiftData(giftId);
-		setGift(gift);
-	};
+		setTimeout(() => fetchAndSetData(), 500);
+	}, [giftId]);
 
 	const seekGift = async () => {
 		try {
@@ -44,19 +43,26 @@ export default function ShowGiftPage({ userData, tokenData }) {
 
 	return (
 		<div className="container pb-10">
-			<GiftInfo
-				userData={userData}
-				gift={gift}
-				seekGift={seekGift}
-				unseekGift={unseekGift}
-			/>
+			{gift ? (
+				<GiftInfo
+					userData={userData}
+					gift={gift}
+					seekGift={seekGift}
+					unseekGift={unseekGift}
+				/>
+			) : (
+				<SkeletonGiftInfo />
+			)}
+
 			<div className="position-relative d-block">
-				{gift.id && (
+				{gift ? (
 					<LocationMap
-						point={giftCoords}
+						point={[gift.lat, gift.lng]}
 						popupText={gift.location}
 						area={giftArea}
 					/>
+				) : (
+					<div className="leaflet-container loading mt-5"></div>
 				)}
 			</div>
 		</div>

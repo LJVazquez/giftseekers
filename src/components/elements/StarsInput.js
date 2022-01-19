@@ -1,15 +1,14 @@
 import React from 'react';
+import { createFilledArray } from '../../utilities/functions';
 
 export default function StarsInput({ label, value, setter, amount }) {
-	const starsAmount = Array(amount)
-		.fill()
-		.map((elem, i) => i + 1);
+	const difficultyAmount = createFilledArray(amount);
 
 	return (
 		<>
 			<p className="form-label my-0">{label}</p>
 			<div className="d-flex py-0">
-				{starsAmount.map((radioValue) => {
+				{difficultyAmount.map((radioValue) => {
 					const colored = value >= radioValue;
 					const style = { color: colored ? 'salmon' : '' };
 					return (
