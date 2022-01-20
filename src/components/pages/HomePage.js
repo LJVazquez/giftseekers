@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import logo from '../../img/logo.png';
 import GiftGallery from '../sections/GiftGallery';
-import { fetchLatestGifts } from '../../utilities/requests';
 import SkeletonGiftGallery from '../skeletons/SkeletonGiftGallery';
+import { GET_LATEST_GIFTS } from '../../graphql/queries/Gift';
+import { useQuery } from '@apollo/client';
 
 const imgStyle = { height: 200, objectFit: 'contain' };
 
 export default function HomePage() {
 	const [gifts, setGifts] = useState(null);
 
-	useEffect(() => {
-		const fetchAndSetData = async (amount) => {
-			try {
-				const latestGifts = await fetchLatestGifts(amount);
-				setGifts(latestGifts);
-			} catch (e) {
-				console.log(`e.message`, e.message);
-			}
-		};
+	const { loading, data, error } = useQuery(GET_LATEST_GIFTS, {
+		variables: { amount: 6 },
+	});
 
-		setTimeout(() => fetchAndSetData(6), 500);
-	}, []);
+	useEffect(() => {
+		if (error) {
+			console.log('error', error);
+		} else if (data) {
+			setGifts(data.latestGifts);
+		}
+	}, [data]);
 
 	return (
 		<main className="container py-10">

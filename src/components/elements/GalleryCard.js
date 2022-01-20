@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const imgStyle = { height: 280, objectFit: 'cover' };
 
 export default function GalleryCard({ gift }) {
-	const startDate = new Date(gift.startDate);
+	const startDate = new Date(Number(gift.startDate));
 	const dateLabel = startDate.toLocaleDateString();
 
 	const giftUrl = `/gifts/${gift.id}`;

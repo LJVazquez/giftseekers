@@ -4,31 +4,8 @@ import UserCard from '../sections/UserCard';
 import UserGiftsData from '../sections/UserGiftsData';
 import SkeletonUserGiftsData from '../skeletons/SkeletonUserGiftsData';
 import SkeletonUserCard from '../skeletons/SkeletonUserCard';
-import { gql, useQuery } from '@apollo/client';
-
-const GET_USER = gql`
-	query findUser($userId: Int!) {
-		user(id: $userId) {
-			username
-			gifts {
-				id
-				name
-				imageUrl
-				difficulty
-				city
-				seekersCount
-			}
-			seeking {
-				id
-				name
-				imageUrl
-				difficulty
-				city
-				seekersCount
-			}
-		}
-	}
-`;
+import { useQuery } from '@apollo/client';
+import { GET_USER } from '../../graphql/queries/User';
 
 export default function ShowUserPage() {
 	const [user, setUser] = useState(null);
