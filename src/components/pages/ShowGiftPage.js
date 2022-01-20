@@ -1,5 +1,7 @@
+import { useQuery } from '@apollo/client';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { GET_GIFT } from '../../graphql/queries/Gift';
 import {
 	fetchGiftData,
 	connectUserToGift,
@@ -11,17 +13,20 @@ import SkeletonGiftInfo from '../skeletons/SkeletonGiftInfo';
 
 export default function ShowGiftPage({ userData, tokenData }) {
 	const [gift, setGift] = useState(null);
-	const giftId = useParams().id;
+	const giftId = Number(useParams().id);
 	const giftArea = 0.01; //kms
 
-	useEffect(() => {
-		const fetchAndSetData = async () => {
-			const gift = await fetchGiftData(giftId);
-			setGift(gift);
-		};
+	const { error, data, loading } = useQuery(GET_GIFT, {
+		variables: { id: giftId },
+	});
 
-		setTimeout(() => fetchAndSetData(), 500);
-	}, [giftId]);
+	useEffect(() => {
+		if (error) {
+			console.log('error', error);
+		} else if (data) {
+			setGift(data.gift);
+		}
+	}, [data]);
 
 	const seekGift = async () => {
 		try {
