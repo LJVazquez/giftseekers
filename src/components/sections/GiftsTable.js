@@ -71,7 +71,7 @@ export default function GiftsTable({ gifts, id }) {
 									{gift.city[0] +
 										gift.city.slice(1, gift.city.length).toLowerCase()}
 								</td>
-								<td>{gift.seekers.length}</td>
+								<td>{gift.seekersCount}</td>
 							</tr>
 						))}
 					</tbody>

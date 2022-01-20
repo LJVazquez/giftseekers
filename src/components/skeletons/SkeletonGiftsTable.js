@@ -1,5 +1,5 @@
 import React from 'react';
-import SkeletonElement from './SkeletonElement';
+import SkeletonTableRow from './SkeletonTableRow';
 
 export default function SkeletonGiftsTable() {
 	return (
@@ -10,13 +10,12 @@ export default function SkeletonGiftsTable() {
 						<th scope="col"></th>
 					</tr>
 				</thead>
-
-				<div className="px-5">
-					<SkeletonElement type="block" />
-					<SkeletonElement type="block" />
-					<SkeletonElement type="block" />
-					<SkeletonElement type="block" />
-				</div>
+				<tbody>
+					<SkeletonTableRow type="block" />
+					<SkeletonTableRow type="block" />
+					<SkeletonTableRow type="block" />
+					<SkeletonTableRow type="block" />
+				</tbody>
 			</table>
 		</div>
 	);
