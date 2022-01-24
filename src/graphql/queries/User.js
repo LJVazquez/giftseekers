@@ -23,3 +23,12 @@ export const GET_USER = gql`
 		}
 	}
 `;
+
+export const REGISTER_USER = gql`
+	mutation addPerson($username: String!, $password: String!) {
+		addPerson(username: $username, password: $password) {
+			id
+			username
+		}
+	}
+`;
