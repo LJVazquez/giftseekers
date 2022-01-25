@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { createGift } from '../../utilities/requests';
 import citiesList from '../../utilities/citiesList.json';
 import BasicInput from '../elements/BasicInput';
 import TextArea from '../elements/TextArea';
@@ -7,6 +6,9 @@ import Select from '../elements/Select';
 import StarsInput from '../elements/StarsInput';
 import MapInput from '../elements/MapInput';
 import ErrorMessage from '../elements/ErrorMessage';
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { CREATE_GIFT } from '../../graphql/queries/Gift';
 
 export default function CreateGiftForm({ navigate, tokenData }) {
 	const [name, setName] = useState('');
@@ -17,8 +19,14 @@ export default function CreateGiftForm({ navigate, tokenData }) {
 	const [lng, setLng] = useState('');
 	const [difficulty, setDifficulty] = useState(1);
 	const [imageUrl, setImageUrl] = useState('');
-
+	const [newGift, setNewGift] = useState(null);
 	const [errorMessage, setErrorMessage] = useState(null);
+	const [createGiftMutation] = useMutation(CREATE_GIFT, {
+		onError: (e) => {
+			console.log('e.message', e.message);
+			setErrorMessage(e.message);
+		},
+	});
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -30,16 +38,27 @@ export default function CreateGiftForm({ navigate, tokenData }) {
 			lat,
 			lng,
 			difficulty,
+			authorId: 2,
 			imageUrl,
 		};
-		try {
-			const newGift = await createGift(tokenData, formData);
-			const newGiftUrl = `/gifts/${newGift.id}`;
-			navigate(newGiftUrl);
-		} catch (e) {
-			setErrorMessage(e.message);
-		}
+
+		const newGift = await createGiftMutation({ variables: { ...formData } });
+		setNewGift(newGift.data.createGift);
 	};
+
+	if (newGift) {
+		return (
+			<div className="card mt-5 p-5">
+				<Link to={`/gifts/${newGift.id}`} className="text-main">
+					<p className="alert alert-success text-center">
+						"{newGift.name}" creado exitosamente.
+						<br /> Click aquí para ir al regalo
+					</p>
+				</Link>
+			</div>
+		);
+	}
+
 	return (
 		<form className="card p-5 my-5" onSubmit={handleSubmit}>
 			{errorMessage && (
