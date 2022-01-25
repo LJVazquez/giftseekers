@@ -2,20 +2,27 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../img/logo.png';
 
-export default function Navbar({ userData }) {
+export default function Navbar({ userData, removeLoggedUserData }) {
 	const userUrl = `users/${userData.id}`;
 
 	const getLoginButton = () => {
-		if (userData) {
+		if (userData.id) {
 			return (
-				<div className="navbar-nav ms-lg-4">
-					<Link
-						to={userUrl}
-						className="btn btn-sm btn-outline btn-outline-secondary text-dark"
-					>
-						{userData.username}
-					</Link>
-				</div>
+				<>
+					<div className="navbar-nav ms-lg-4">
+						<Link to={userUrl} className="nav-item nav-link">
+							{userData.username}
+						</Link>
+					</div>
+					<div className="d-flex align-items-lg-center mt-3 mt-lg-0">
+						<p
+							onClick={removeLoggedUserData}
+							className="btn btn-sm btn-secondary w-full w-lg-auto"
+						>
+							Logout
+						</p>
+					</div>
+				</>
 			);
 		} else {
 			return (
@@ -34,6 +41,7 @@ export default function Navbar({ userData }) {
 				<Link to="/" className="navbar-brand">
 					<img src={logo} className="h-8" alt="logo" />
 				</Link>
+
 				<button
 					className="navbar-toggler"
 					type="button"
@@ -54,11 +62,8 @@ export default function Navbar({ userData }) {
 						<Link to="/gifts/create" className="nav-item nav-link">
 							Regalar
 						</Link>
-						<Link to="/" className="nav-item nav-link">
-							Buscar
-						</Link>
-						<Link to="/" className="nav-item nav-link">
-							Placehold
+						<Link to="/search" className="nav-item nav-link">
+							Ver regalos
 						</Link>
 					</div>
 					{getLoginButton()}

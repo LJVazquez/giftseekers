@@ -1,0 +1,75 @@
+$mainColor: #ffd8d2
+
+.bg-main
+    background-color: $mainColor
+
+.text-main
+    color: $mainColor
+
+.lined-title
+    width: 100%
+    text-align: center
+    border-bottom: 1px solid #a1a1a193
+    line-height: 0.1em
+    margin: 10px 0 50px
+
+    & span
+        background: #fff
+        padding: 0 10px
+
+.dot-active
+    background-color: aquamarine
+    box-shadow: 0 0 5px aquamarine
+
+.dot-inactive
+    background-color: lightcoral
+    box-shadow: 0 0 5px lightcoral
+
+.input-star
+    font-size: 2.2em
+    color: gray
+    transition: all 200ms
+
+    &:hover
+        color: salmon
+
+.leaflet-container
+    width: 100%
+    height: 400px
+
+.loading
+    background: #ddd
+    animation: skeleton-loading 1s infinite alternate
+
+.skeleton
+    background: #ddd
+    margin: 10px 0
+    animation: skeleton-loading 1s infinite alternate
+
+    &.text
+        width: 100%
+        height: 12px
+
+    &.title
+        width: 50%
+        height: 20px
+        margin-bottom: 15px
+
+    &.avatar
+        width: 100px
+        height: 100px
+        border-radius: 50%
+
+    &.thumbnail
+        width: 100px
+        height: 100px
+
+    &.block
+        width: 100%
+        height: 60px
+
+@keyframes skeleton-loading
+    0%
+        opacity: 30%
+    100%
+        opacity: 100%
