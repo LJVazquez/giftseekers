@@ -5,7 +5,7 @@ import SeekGiftButton from '../elements/SeekGiftButton';
 const imgStyle = { height: 400, width: '100%', objectFit: 'cover' };
 
 export default function GiftInfo({ userData, gift, seekGift, unseekGift }) {
-	const startDate = new Date(gift.startDate);
+	const startDate = new Date(Number(gift.startDate));
 	const dateLabel = startDate.toLocaleDateString();
 
 	let city = '';

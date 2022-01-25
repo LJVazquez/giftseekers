@@ -9,7 +9,6 @@ export const CREATE_GIFT = gql`
 		$lat: Float!
 		$lng: Float!
 		$difficulty: Int!
-		$authorId: Int!
 		$imageUrl: String!
 	) {
 		createGift(
@@ -20,7 +19,6 @@ export const CREATE_GIFT = gql`
 			lat: $lat
 			lng: $lng
 			difficulty: $difficulty
-			authorId: $authorId
 			imageUrl: $imageUrl
 		) {
 			id
@@ -37,11 +35,13 @@ export const GET_GIFT = gql`
 		gift(id: $id) {
 			id
 			name
+			description
 			startDate
 			active
 			difficulty
 			imageUrl
 			location
+			city
 			lat
 			lng
 			author {
@@ -51,6 +51,7 @@ export const GET_GIFT = gql`
 			seekers {
 				username
 			}
+			authorId
 		}
 	}
 `;
@@ -64,7 +65,7 @@ export const GET_LATEST_GIFTS = gql`
 			active
 			difficulty
 			imageUrl
-			location
+			city
 		}
 	}
 `;

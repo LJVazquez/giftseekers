@@ -4,8 +4,14 @@ import { Link } from 'react-router-dom';
 const imgStyle = { height: 280, objectFit: 'cover' };
 
 export default function GalleryCard({ gift }) {
+	//hardcoded hasta integrar con los datos recibidos de graphql
 	const startDate = new Date(Number(gift.startDate));
-	const dateLabel = startDate.toLocaleDateString();
+	//const dateLabel = startDate.toLocaleDateString();
+	const dateLabel = '21/02/2021';
+
+	let city = '';
+	if (gift.city)
+		city = gift.city[0] + gift.city.slice(1, gift.city.length).toLowerCase();
 
 	const giftUrl = `/gifts/${gift.id}`;
 	const dotClass = `${
@@ -41,7 +47,7 @@ export default function GalleryCard({ gift }) {
 							<div className="text-warning">
 								<abbr title="Dificultad">{difficulty}</abbr>
 							</div>
-							<p className="text-muted">{gift.location}</p>
+							<p className="text-muted">{city}</p>
 						</div>
 					</div>
 				</div>

@@ -14,10 +14,12 @@ import CreateGiftPage from './components/pages/CreateGiftPage';
 import EditGiftPage from './components/pages/EditGiftPage';
 import ShowUserPage from './components/pages/ShowUserPage';
 import SearchPage from './components/pages/SearchPage';
+import { useApolloClient } from '@apollo/client';
 
 function App() {
 	const [userData, setUserData] = useState(userDataPlaceholder);
 	const [tokenData, setTokenData] = useState(null);
+	const client = useApolloClient();
 
 	const navigate = useNavigate();
 
@@ -42,8 +44,8 @@ function App() {
 	const removeLoggedUserData = () => {
 		setUserData(userDataPlaceholder);
 		setTokenData(userDataPlaceholder);
-		window.localStorage.removeItem('giftSeekersUserData');
-		window.localStorage.removeItem('giftSeekersTokenData');
+		window.localStorage.clear();
+		client.resetStore();
 	};
 
 	const setLoggedUserData = (loggedUserData) => {
@@ -51,7 +53,7 @@ function App() {
 			id: loggedUserData.id,
 			username: loggedUserData.username,
 		};
-		const tokenData = loggedUserData.accessToken;
+		const tokenData = loggedUserData.value;
 
 		setUserData(userData);
 		setTokenData(tokenData);

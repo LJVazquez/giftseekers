@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { GET_GIFT } from '../../graphql/queries/Gift';
 import {
-	fetchGiftData,
 	connectUserToGift,
 	disconnectUserFromGift,
 } from '../../utilities/requests';

@@ -8,7 +8,7 @@ import MapInput from '../elements/MapInput';
 import ErrorMessage from '../elements/ErrorMessage';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { CREATE_GIFT } from '../../graphql/queries/Gift';
+import { CREATE_GIFT, GET_LATEST_GIFTS } from '../../graphql/queries/Gift';
 
 export default function CreateGiftForm({ navigate, tokenData }) {
 	const [name, setName] = useState('');
@@ -22,6 +22,7 @@ export default function CreateGiftForm({ navigate, tokenData }) {
 	const [newGift, setNewGift] = useState(null);
 	const [errorMessage, setErrorMessage] = useState(null);
 	const [createGiftMutation] = useMutation(CREATE_GIFT, {
+		refetchQueries: [{ query: GET_LATEST_GIFTS }],
 		onError: (e) => {
 			console.log('e.message', e.message);
 			setErrorMessage(e.message);
@@ -37,8 +38,7 @@ export default function CreateGiftForm({ navigate, tokenData }) {
 			location,
 			lat,
 			lng,
-			difficulty,
-			authorId: 2,
+			difficulty: Number(difficulty),
 			imageUrl,
 		};
 

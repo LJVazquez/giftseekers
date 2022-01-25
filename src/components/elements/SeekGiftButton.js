@@ -11,6 +11,8 @@ export default function SeekGiftButton({
 		return gift.authorId === userData.id;
 	};
 
+	console.log('gift.authorId', gift.authorId);
+
 	const userIsSeeking = () => {
 		const giftsSeekersIds = gift.seekers.map((seeker) => seeker.id);
 		return giftsSeekersIds.includes(userData.id);
