@@ -4,12 +4,17 @@ import { useMutation } from '@apollo/client';
 import ErrorMessage from '../elements/ErrorMessage';
 import { REGISTER_USER } from '../../graphql/queries/User';
 
-export default function RegisterForm({ setLoggedUserData, navigate }) {
+export default function RegisterForm({ setLoggedUserData }) {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [errorMessage, setErrorMessage] = useState(null);
 	const [newUser, setNewUser] = useState(null);
-	const [registerUserMutation] = useMutation(REGISTER_USER);
+	const [registerUserMutation] = useMutation(REGISTER_USER, {
+		onError: (e) => {
+			console.log('e', e.message);
+			setErrorMessage('Error al registrar. Intente Luego.');
+		},
+	});
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -23,18 +28,14 @@ export default function RegisterForm({ setLoggedUserData, navigate }) {
 	};
 
 	const registerUser = async (registerData) => {
-		try {
-			const newUser = await registerUserMutation({
-				variables: {
-					username: registerData.username,
-					password: registerData.password,
-				},
-			});
-			setNewUser(newUser.data);
-			setLoggedUserData(newUser);
-		} catch (e) {
-			setErrorMessage('Error al registrar. Intente Luego.');
-		}
+		const newUser = await registerUserMutation({
+			variables: {
+				username: registerData.username,
+				password: registerData.password,
+			},
+		});
+		setNewUser(newUser.data);
+		setLoggedUserData(newUser);
 	};
 
 	if (newUser) {

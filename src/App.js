@@ -93,6 +93,7 @@ function App() {
 						element={
 							<LoginPage
 								setLoggedUserData={setLoggedUserData}
+								userData={userData}
 								navigate={navigate}
 							/>
 						}

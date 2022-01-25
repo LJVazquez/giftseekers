@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { loginUser } from '../../utilities/requests';
 import ErrorMessage from '../elements/ErrorMessage';
+import { useMutation } from '@apollo/client';
+import { LOGIN } from '../../graphql/queries/User';
 
-export default function LoginForm({ setLoggedUserData, navigate }) {
+export default function LoginForm({ setLoggedUserData, userData, navigate }) {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [errorMessage, setErrorMessage] = useState(null);
+	const [loginMutation] = useMutation(LOGIN, {
+		onError: (e) => {
+			console.log('e.message', e.message);
+			setErrorMessage('Usuario y/o contraseña incorrecto/s');
+		},
+	});
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -20,14 +27,29 @@ export default function LoginForm({ setLoggedUserData, navigate }) {
 	};
 
 	const login = async (loginData) => {
-		try {
-			const loggedUserData = await loginUser(loginData);
-			setLoggedUserData(loggedUserData);
-			navigate(-1);
-		} catch (e) {
-			setErrorMessage('Usuario y/o contraseña incorrecto/s');
-		}
+		const loggedUser = await loginMutation({
+			variables: { ...loginData },
+		});
+		setLoggedUserData(loggedUser.data.login);
 	};
+
+	const goToPrevPage = () => {
+		navigate(-1);
+	};
+
+	if (userData.id) {
+		return (
+			<div className="card p-5">
+				<button
+					className="alert alert-success text-center"
+					onClick={goToPrevPage}
+				>
+					Logeado como {userData.username}
+					<br /> Click aquí para volver
+				</button>
+			</div>
+		);
+	}
 
 	return (
 		<form className="card p-5" onSubmit={(e) => handleSubmit(e)}>
